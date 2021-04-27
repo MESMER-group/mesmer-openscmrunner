@@ -65,30 +65,45 @@ def _draw_realisations_from_mesmer_file_and_openscm_output(
     for scen_gsat in openscm_gsat_for_mesmer.groupby("scenario"):
         scenario = scen_gsat.get_unique_meta("scenario", True)
         if scenario not in mesmer_bundle["time"]:
-            raise ValueError("No MESMER calibration available for: {}".format(scenario))
+            raise KeyError("No MESMER calibration available for: {}".format(scenario))
 
         hist_tas = _filter_and_assert_1d(scen_gsat.filter(year=time_mesmer["hist"]))
         scen_tas = _filter_and_assert_1d(scen_gsat.filter(year=time_mesmer[scenario]))
 
-        scen_hfds = openscm_hfds_for_mesmer.filter(scenario=scenario)
-        hist_hfds = _filter_and_assert_1d(scen_hfds.filter(year=time_mesmer["hist"]))
-        scen_hfds = _filter_and_assert_1d(scen_hfds.filter(year=time_mesmer[scenario]))
+        openscm_hfds_for_mesmer_scen = openscm_hfds_for_mesmer.filter(scenario=scenario)
+        hist_hfds = _filter_and_assert_1d(openscm_hfds_for_mesmer_scen.filter(year=time_mesmer["hist"]))
+        scen_hfds = _filter_and_assert_1d(openscm_hfds_for_mesmer_scen.filter(year=time_mesmer[scenario]))
 
-        preds_lt_scenario = {
-            "gttas": {"hist": hist_tas, scenario: scen_tas},
-            "gttas2": {"hist": hist_tas ** 2, scenario: scen_tas ** 2},
-            "gthfds": {"hist": hist_hfds, scenario: scen_hfds},
-        }
+        # TODO: remove hard-coding and actually map up with what MESMER expects
+        preds_lt_scenario = {}
+        for predictor in mesmer_bundle["params_lt"]["preds"]:
+            if predictor == "gttas":
+                hist_vals = hist_tas
+                scen_vals = scen_tas
+            elif predictor == "gttas2":
+                hist_vals = hist_tas ** 2
+                scen_vals = scen_tas ** 2
+            elif predictor == "gthfds":
+                hist_vals = hist_hfds
+                scen_vals = scen_hfds
+
+            preds_lt_scenario[predictor] = {"hist": hist_vals, scenario: scen_vals}
 
         result_scenario = mesmer.create_emulations.make_realisations(
-            preds_lt_scenario,
-            mesmer_bundle["params_lt"],
-            mesmer_bundle["params_lv"],
-            mesmer_bundle["params_gv_T"],
+            preds_lt=preds_lt_scenario,
+            params_lt=mesmer_bundle["params_lt"],
+            params_lv=mesmer_bundle["params_lv"],
+            params_gv_T=mesmer_bundle["params_gv_T"],
             n_realisations=n_realisations_per_scenario,
             seeds=mesmer_bundle["seeds"],
             land_fractions=mesmer_bundle["land_fractions"],
             time=time_mesmer,
+        )
+
+        result_scenario = (
+            result_scenario
+            .squeeze(dim="scenario", drop=True)
+            .expand_dims({"scenario": [scenario]})
         )
         out.append(result_scenario)
 

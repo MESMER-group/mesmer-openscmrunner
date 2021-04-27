@@ -54,6 +54,8 @@ def test_create_realisations_from_pre_run_data(test_data_dir):
     assert set(result.data_vars) == {"tas"}
     assert set(result.dims) == {"realisation", "scenario", "z", "year"}
 
+    assert set(result["scenario"].values) == set(openscm_gsat.get_unique_meta("scenario"))
+
     # make sure we can get onto a lat lon grid from what is saved
     result_reshaped = result.set_index(z=("lat", "lon")).unstack("z")
     assert set(result_reshaped.dims) == {
