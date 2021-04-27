@@ -47,6 +47,8 @@ def _draw_realisations_from_mesmer_file_and_openscm_output(
         ``openscm_hfds`` contains variables other than ``"Heat Uptake|Ocean"``
     """
     mesmer_bundle = joblib.load(mesmer_bundle_file)
+    import pdb
+    pdb.set_trace()
     time_mesmer = mesmer_bundle["time"]
 
     gsat_scenarios = set(openscm_gsat.get_unique_meta("scenario"))
@@ -61,18 +63,21 @@ def _draw_realisations_from_mesmer_file_and_openscm_output(
     openscm_gsat_for_mesmer = _prepare_openscm_gsat(openscm_gsat)
     openscm_hfds_for_mesmer = _prepare_openscm_hfds(openscm_hfds)
 
+    hard_coded_hist_years = range(1850, 2014 + 1)
+    hard_coded_scen_years = range(2015, 3000 + 1)
+
     out = []
     for scen_gsat in openscm_gsat_for_mesmer.groupby("scenario"):
         scenario = scen_gsat.get_unique_meta("scenario", True)
-        if scenario not in mesmer_bundle["time"]:
-            raise KeyError("No MESMER calibration available for: {}".format(scenario))
+        # if scenario not in mesmer_bundle["time"]:
+        #     raise KeyError("No MESMER calibration available for: {}".format(scenario))
 
-        hist_tas = _filter_and_assert_1d(scen_gsat.filter(year=time_mesmer["hist"]))
-        scen_tas = _filter_and_assert_1d(scen_gsat.filter(year=time_mesmer[scenario]))
+        hist_tas = _filter_and_assert_1d(scen_gsat.filter(year=hard_coded_hist_years))
+        scen_tas = _filter_and_assert_1d(scen_gsat.filter(year=hard_coded_scen_years))
 
         openscm_hfds_for_mesmer_scen = openscm_hfds_for_mesmer.filter(scenario=scenario)
-        hist_hfds = _filter_and_assert_1d(openscm_hfds_for_mesmer_scen.filter(year=time_mesmer["hist"]))
-        scen_hfds = _filter_and_assert_1d(openscm_hfds_for_mesmer_scen.filter(year=time_mesmer[scenario]))
+        hist_hfds = _filter_and_assert_1d(openscm_hfds_for_mesmer_scen.filter(year=hard_coded_hist_years))
+        scen_hfds = _filter_and_assert_1d(openscm_hfds_for_mesmer_scen.filter(year=hard_coded_scen_years))
 
         # TODO: remove hard-coding and actually map up with what MESMER expects
         preds_lt_scenario = {}
@@ -95,9 +100,12 @@ def _draw_realisations_from_mesmer_file_and_openscm_output(
             params_lv=mesmer_bundle["params_lv"],
             params_gv_T=mesmer_bundle["params_gv_T"],
             n_realisations=n_realisations_per_scenario,
-            seeds=mesmer_bundle["seeds"],
+            seeds=mesmer_bundle["seeds"],  # TODO make this user customisable
             land_fractions=mesmer_bundle["land_fractions"],
-            time=time_mesmer,
+            time={
+                "hist": scen_gsat.filter(year=hard_coded_hist_years)["year"].values,
+                scenario: scen_gsat.filter(year=hard_coded_scen_years)["year"].values
+            },
         )
 
         result_scenario = (
