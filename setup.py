@@ -99,6 +99,7 @@ README = "README.rst"
 with open(README, "r") as readme_file:
     README_TEXT = readme_file.read()
 
+
 class MesmerOpenSCMRunner(TestCommand):
     def finalize_options(self):
         TestCommand.finalize_options(self)
@@ -109,6 +110,7 @@ class MesmerOpenSCMRunner(TestCommand):
         import pytest
 
         pytest.main(self.test_args)
+
 
 cmdclass = versioneer.get_cmdclass()
 cmdclass.update({"test": MesmerOpenSCMRunner})

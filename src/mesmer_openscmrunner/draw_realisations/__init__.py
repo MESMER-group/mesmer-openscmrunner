@@ -1,5 +1,4 @@
 import joblib
-
 import mesmer.create_emulations
 import xarray as xr
 
@@ -53,7 +52,11 @@ def _draw_realisations_from_mesmer_file_and_openscm_output(
     gsat_scenarios = set(openscm_gsat.get_unique_meta("scenario"))
     hfds_scenarios = set(openscm_hfds.get_unique_meta("scenario"))
     if gsat_scenarios != hfds_scenarios:
-        raise ValueError("gsat_scenarios: {}, hfds_scenarios: {}".format(gsat_scenarios, hfds_scenarios))
+        raise ValueError(
+            "gsat_scenarios: {}, hfds_scenarios: {}".format(
+                gsat_scenarios, hfds_scenarios
+            )
+        )
 
     openscm_gsat_for_mesmer = _prepare_openscm_gsat(openscm_gsat)
     openscm_hfds_for_mesmer = _prepare_openscm_hfds(openscm_hfds)
@@ -64,20 +67,12 @@ def _draw_realisations_from_mesmer_file_and_openscm_output(
         if scenario not in mesmer_bundle["time"]:
             raise ValueError("No MESMER calibration available for: {}".format(scenario))
 
-        hist_tas = _filter_and_assert_1d(
-            scen_gsat.filter(year=time_mesmer["hist"])
-        )
-        scen_tas = _filter_and_assert_1d(
-            scen_gsat.filter(year=time_mesmer[scenario])
-        )
+        hist_tas = _filter_and_assert_1d(scen_gsat.filter(year=time_mesmer["hist"]))
+        scen_tas = _filter_and_assert_1d(scen_gsat.filter(year=time_mesmer[scenario]))
 
         scen_hfds = openscm_hfds_for_mesmer.filter(scenario=scenario)
-        hist_hfds = _filter_and_assert_1d(
-            scen_hfds.filter(year=time_mesmer["hist"])
-        )
-        scen_hfds = _filter_and_assert_1d(
-            scen_hfds.filter(year=time_mesmer[scenario])
-        )
+        hist_hfds = _filter_and_assert_1d(scen_hfds.filter(year=time_mesmer["hist"]))
+        scen_hfds = _filter_and_assert_1d(scen_hfds.filter(year=time_mesmer[scenario]))
 
         preds_lt_scenario = {
             "gttas": {"hist": hist_tas, scenario: scen_tas},
@@ -113,6 +108,8 @@ def _prepare_openscm_hfds(openscm_hfds):
 def _filter_and_assert_1d(scmrun, **kwargs):
     filtered = scmrun.filter(**kwargs).values.squeeze()
     if len(filtered.shape) != 1:
-        raise ValueError("Filters gave non-1D data: {}, {}".format(filtered.shape, kwargs))
+        raise ValueError(
+            "Filters gave non-1D data: {}, {}".format(filtered.shape, kwargs)
+        )
 
     return filtered
