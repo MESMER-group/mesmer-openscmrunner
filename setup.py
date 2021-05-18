@@ -41,7 +41,8 @@ CLASSIFIERS = [
 REQUIREMENTS = [
     # "mesmer",  # once released
     "openscm-runner>=0.6",
-]
+    "scmdata>=0.9,<0.10", #whilst running notebooks with rcmip phase 2 output
+    ]
 REQUIREMENTS_TESTS = [
     "codecov",
     "nbval",
