@@ -20,6 +20,7 @@ KEYWORDS = [
 AUTHORS = [
     ("Zeb Nicholls", "zebedee.nicholls@climate-energy-college.org"),
     ("Lea Beusch", "lea.beusch@env.ethz.ch"),
+    ("Mathias Hauser", "mathias.hauser@env.ethz.ch"),
 ]
 URL = "https://github.com/znicholls/mesmer-openscmrunner"
 PROJECT_URLS = {
@@ -27,10 +28,10 @@ PROJECT_URLS = {
     # "Documentation": "https://mesmer-openscmruner.readthedocs.io/en/latest",
     "Source": "https://github.com/znicholls/mesmer-openscmrunner",
 }
-LICENSE = None  # "3-Clause BSD License"
+LICENSE = "GPLv3+"  # I think this is the right short-hand...
 CLASSIFIERS = [
     "Development Status :: 4 - Beta",
-    # "License :: OSI Approved :: BSD License",
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
     "Intended Audience :: Developers",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3.7",
