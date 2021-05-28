@@ -51,9 +51,6 @@ def _draw_realisations_from_mesmer_file_and_openscm_output(
         ``openscm_hfds`` contains variables other than ``"Heat Uptake|Ocean"``
     """
     mesmer_bundle = joblib.load(mesmer_bundle_file)
-    import pdb
-    pdb.set_trace()
-    time_mesmer = mesmer_bundle["time"]
 
     gsat_scenarios = set(openscm_gsat.get_unique_meta("scenario"))
     hfds_scenarios = set(openscm_hfds.get_unique_meta("scenario"))
