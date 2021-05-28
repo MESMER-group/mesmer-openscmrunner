@@ -1,0 +1,2 @@
+include versioneer.py
+include src/mesmer_openscmrunner/_version.py
