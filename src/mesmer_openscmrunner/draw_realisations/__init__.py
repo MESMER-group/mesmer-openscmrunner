@@ -77,8 +77,12 @@ def _draw_realisations_from_mesmer_file_and_openscm_output(
         scen_tas = _filter_and_assert_1d(scen_gsat.filter(year=hard_coded_scen_years))
 
         openscm_hfds_for_mesmer_scen = openscm_hfds_for_mesmer.filter(scenario=scenario)
-        hist_hfds = _filter_and_assert_1d(openscm_hfds_for_mesmer_scen.filter(year=hard_coded_hist_years))
-        scen_hfds = _filter_and_assert_1d(openscm_hfds_for_mesmer_scen.filter(year=hard_coded_scen_years))
+        hist_hfds = _filter_and_assert_1d(
+            openscm_hfds_for_mesmer_scen.filter(year=hard_coded_hist_years)
+        )
+        scen_hfds = _filter_and_assert_1d(
+            openscm_hfds_for_mesmer_scen.filter(year=hard_coded_scen_years)
+        )
 
         # TODO: remove hard-coding and actually map up with what MESMER expects
         preds_lt_scenario = {}
@@ -105,15 +109,13 @@ def _draw_realisations_from_mesmer_file_and_openscm_output(
             land_fractions=mesmer_bundle["land_fractions"],
             time={
                 "hist": scen_gsat.filter(year=hard_coded_hist_years)["year"].values,
-                scenario: scen_gsat.filter(year=hard_coded_scen_years)["year"].values
+                scenario: scen_gsat.filter(year=hard_coded_scen_years)["year"].values,
             },
         )
 
-        result_scenario = (
-            result_scenario
-            .squeeze(dim="scenario", drop=True)
-            .expand_dims({"scenario": [scenario]})
-        )
+        result_scenario = result_scenario.squeeze(
+            dim="scenario", drop=True
+        ).expand_dims({"scenario": [scenario]})
         out.append(result_scenario)
 
     out = xr.merge(out)
