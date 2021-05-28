@@ -41,8 +41,8 @@ jobs:
       # TODO: use make -B conda-environment when mesmer is available
       run: |
           which python
-          conda install pytest black flake8
-          black --check src tests setup.py
+          conda install black flake8
+          black --exclude _version.py --check src tests setup.py
           flake8 src tests setup.py
 
   build:
@@ -78,4 +78,5 @@ jobs:
       # TDOO: use make -B test
       run: |
           which python
+          conda install pytest
           pytest tests/test_source_file_headers.py
