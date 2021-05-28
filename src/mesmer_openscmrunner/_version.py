@@ -1,8 +1,3 @@
-# MESMER-OpenSCM Runner, land-climate dynamics group, S.I. Seneviratne
-# Copyright (c) 2021 MESMER-OpenSCM Runner contributors, listed in AUTHORS, and ETH Zurich.
-# Licensed under the GNU General Public License v3.0 or later; see LICENSE or https://www.gnu.org/licenses/
-
-
 # This file helps to compute a version number in source trees obtained from
 # git-archive tarball (such as those provided by githubs download-from-tag
 # feature). Distribution tarballs (built by setup.py sdist) and build

@@ -13,9 +13,14 @@ LICENSE_TEMPLATE = """# MESMER-OpenSCM Runner, land-climate dynamics group, S.I.
 
 
 def test_source_code_headers(repo_root_dir, update_copyright_notices):
-    files_to_check = glob.glob(
-        os.path.join(repo_root_dir, "tests", "**", "*.py"), recursive=True
-    ) + glob.glob(os.path.join(repo_root_dir, "src", "**", "*.py"), recursive=True)
+    files_to_check = (
+        glob.glob(os.path.join(repo_root_dir, "tests", "**", "*.py"), recursive=True)
+        + glob.glob(os.path.join(repo_root_dir, "src", "**", "*.py"), recursive=True)
+    )
+    exclude = ["_version.py"]
+    files_to_check = [
+        f for f in files_to_check if os.path.basename(f) not in exclude
+    ]
 
     now = datetime.datetime.now()
     current_year = now.year
