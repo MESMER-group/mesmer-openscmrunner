@@ -37,9 +37,7 @@ def test_source_code_headers(repo_root_dir, update_copyright_notices, n_lines=No
 
         if not contents.startswith(license_template):
             if update_copyright_notices:
-                contents = "\n".join(
-                    contents.split("\n")[n_lines :]
-                )
+                contents = "\n".join(contents.split("\n")[n_lines:])
                 contents = "{}\n\n{}".format(license_template, contents)
                 with open(f, "w") as fh:
                     fh.write(contents)
