@@ -1,7 +1,7 @@
 MESMER-OpenSCM Runner
 =====================
 
-Coupling between MESMER and `OpenSCM-Runner <https://github.com/openscm/openscm-runner>`_.
+Coupling between `MESMER <https://github.com/MESMER-group/mesmer>`_ and `OpenSCM-Runner <https://github.com/openscm/openscm-runner>`_.
 
 .. sec-begin-license
 
