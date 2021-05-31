@@ -41,7 +41,7 @@ jobs:
       # TODO: use make -B conda-environment when mesmer is available
       run: |
           which python
-          conda install black flake8
+          conda install black flake8 isort
           black --exclude _version.py --check src tests setup.py
           flake8 src tests setup.py
           isort --check-only --quiet src tests setup.py
