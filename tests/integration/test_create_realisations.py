@@ -1,3 +1,7 @@
+# MESMER-OpenSCM Runner, land-climate dynamics group, S.I. Seneviratne
+# Copyright (c) 2021 MESMER-OpenSCM Runner contributors, listed in AUTHORS, and ETH Zurich.
+# Licensed under the GNU General Public License v3.0 or later; see LICENSE or https://www.gnu.org/licenses/
+
 import os.path
 
 import scmdata
@@ -54,7 +58,9 @@ def test_create_realisations_from_pre_run_data(test_data_dir):
     assert set(result.data_vars) == {"tas"}
     assert set(result.dims) == {"realisation", "scenario", "z", "year"}
 
-    assert set(result["scenario"].values) == set(openscm_gsat.get_unique_meta("scenario"))
+    assert set(result["scenario"].values) == set(
+        openscm_gsat.get_unique_meta("scenario")
+    )
 
     # make sure we can get onto a lat lon grid from what is saved
     result_reshaped = result.set_index(z=("lat", "lon")).unstack("z")
@@ -67,7 +73,9 @@ def test_create_realisations_from_pre_run_data(test_data_dir):
     }
 
 
-def test_create_realisations_from_pre_run_data_with_unrecognised_scenario_name(test_data_dir):
+def test_create_realisations_from_pre_run_data_with_unrecognised_scenario_name(
+    test_data_dir,
+):
     mesmer_bundle_file = os.path.join(
         test_data_dir, "mesmer-bundles", "test-generic-mesmer-bundle.pkl"
     )
@@ -112,7 +120,9 @@ def test_create_realisations_from_pre_run_data_with_unrecognised_scenario_name(t
     assert set(result.data_vars) == {"tas"}
     assert set(result.dims) == {"realisation", "scenario", "z", "year"}
 
-    assert set(result["scenario"].values) == set(openscm_gsat.get_unique_meta("scenario"))
+    assert set(result["scenario"].values) == set(
+        openscm_gsat.get_unique_meta("scenario")
+    )
 
     # make sure we can get onto a lat lon grid from what is saved
     result_reshaped = result.set_index(z=("lat", "lon")).unstack("z")

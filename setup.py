@@ -20,17 +20,18 @@ KEYWORDS = [
 AUTHORS = [
     ("Zeb Nicholls", "zebedee.nicholls@climate-energy-college.org"),
     ("Lea Beusch", "lea.beusch@env.ethz.ch"),
+    ("Mathias Hauser", "mathias.hauser@env.ethz.ch"),
 ]
-URL = "https://github.com/znicholls/mesmer-openscmrunner"
+URL = "https://github.com/MESMER-group/mesmer-openscmrunner"
 PROJECT_URLS = {
-    "Bug Reports": "https://github.com/znicholls/mesmer-openscmrunner/issues",
+    "Bug Reports": "https://github.com/MESMER-group/mesmer-openscmrunner/issues",
     # "Documentation": "https://mesmer-openscmruner.readthedocs.io/en/latest",
-    "Source": "https://github.com/znicholls/mesmer-openscmrunner",
+    "Source": "https://github.com/MESMER-group/mesmer-openscmrunner",
 }
-LICENSE = None  # "3-Clause BSD License"
+LICENSE = "GPLv3+"  # I think this is the right short-hand...
 CLASSIFIERS = [
     "Development Status :: 4 - Beta",
-    # "License :: OSI Approved :: BSD License",
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
     "Intended Audience :: Developers",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3.7",
@@ -41,8 +42,9 @@ CLASSIFIERS = [
 REQUIREMENTS = [
     # "mesmer",  # once released
     "openscm-runner>=0.6",
-    "scmdata>=0.9,<0.10", #whilst running notebooks with rcmip phase 2 output
-    ]
+    "scmdata>=0.9,<0.10",  # whilst running notebooks with rcmip phase 2 output
+    "xarray==0.17.0",  # whilst running notebooks with rcmip phase 2 output
+]
 REQUIREMENTS_TESTS = [
     "codecov",
     "nbval",
