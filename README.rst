@@ -24,6 +24,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 The full list of code contributors can be found in AUTHORS or at
-[github.com/znicholls/mesmer-openscmrunner/graphs/contributors](https://github.com/znicholls/mesmer-openscmrunner/graphs/contributors).
+[github.com/MESMER-group/mesmer-openscmrunner/graphs/contributors](https://github.com/MESMER-group/mesmer-openscmrunner/graphs/contributors).
 
 .. sec-end-license

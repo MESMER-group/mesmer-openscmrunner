@@ -22,11 +22,11 @@ AUTHORS = [
     ("Lea Beusch", "lea.beusch@env.ethz.ch"),
     ("Mathias Hauser", "mathias.hauser@env.ethz.ch"),
 ]
-URL = "https://github.com/znicholls/mesmer-openscmrunner"
+URL = "https://github.com/MESMER-group/mesmer-openscmrunner"
 PROJECT_URLS = {
-    "Bug Reports": "https://github.com/znicholls/mesmer-openscmrunner/issues",
+    "Bug Reports": "https://github.com/MESMER-group/mesmer-openscmrunner/issues",
     # "Documentation": "https://mesmer-openscmruner.readthedocs.io/en/latest",
-    "Source": "https://github.com/znicholls/mesmer-openscmrunner",
+    "Source": "https://github.com/MESMER-group/mesmer-openscmrunner",
 }
 LICENSE = "GPLv3+"  # I think this is the right short-hand...
 CLASSIFIERS = [
