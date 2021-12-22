@@ -58,6 +58,7 @@ REQUIREMENTS_NOTEBOOKS = [
     "seaborn",
 ]
 REQUIREMENTS_DOCS = [
+    "ipython",
     "nbsphinx",
     "numpydoc",
     "sphinx",
