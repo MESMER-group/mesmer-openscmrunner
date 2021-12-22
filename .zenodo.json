@@ -1,0 +1,28 @@
+{
+    "metadata": {
+        "title": "MESMER-OpenSCM Runner",
+        "version": "autofill-from-script-version",
+        "upload_type": "software",
+        "description": "Coupling between MESMER and OpenSCM-Runner. If used, please also cite Beusch et al., GMD 2021 (https://doi.org/10.5194/gmd-2021-252)",
+        "creators": [
+            {
+                "name": "Zebedee Nicholls",
+                "affiliation": "Australian-German Climate & Energy College, University of Melbourne",
+                "orcid": "0000-0002-4767-2723"
+            },
+            {
+                "name": "Mathias Hauser",
+                "affiliation": "ETH-Bereich Hochschulen: Zurich, ZH, CH",
+                "orcid": "0000-0002-0057-4878"
+            },
+            {
+                "name": "Lea Beusch",
+                "affiliation": "ETH-Bereich Hochschulen: Zurich, ZH, CH",
+                "orcid": "0000-0002-3692-7962"
+            }
+        ],
+        "language": "eng",
+        "license": "GPL-3.0",
+        "keywords": ["climate emulation", "climate model", "climate change", "magicc", "mesmer"]
+    }
+}

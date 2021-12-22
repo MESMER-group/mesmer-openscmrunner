@@ -73,6 +73,7 @@ requirements_dev = [
         "isort",
         "mypy",
         "nbdime",
+        "openscm-zenodo",
         "pydocstyle",
         "pylint",
     ],
