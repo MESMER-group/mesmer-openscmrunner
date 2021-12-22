@@ -59,8 +59,9 @@ REQUIREMENTS_NOTEBOOKS = [
 ]
 REQUIREMENTS_DOCS = [
     "nbsphinx",
+    "numpydoc",
     "sphinx",
-    "sphinx_rtd_theme",
+    "sphinx-book-theme",
     "sphinx-copybutton",
 ]
 REQUIREMENTS_DEPLOY = ["twine>=1.11.0", "setuptools>=38.6.0", "wheel>=0.31.0"]
