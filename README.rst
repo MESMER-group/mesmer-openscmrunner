@@ -1,7 +1,42 @@
+.. sec-begin-title
+
 MESMER-OpenSCM Runner
 =====================
 
+.. sec-end-title
+
+.. sec-begin-shortsummary
+
 Coupling between `MESMER <https://github.com/MESMER-group/mesmer>`_ and `OpenSCM-Runner <https://github.com/openscm/openscm-runner>`_.
+
+.. sec-end-shortsummary
+
+.. sec-begin-installation
+
+Installation
+------------
+
+.. sec-end-installation
+
+.. sec-begin-citing
+
+Citing MESMER-OpenSCM Runner
+----------------------------
+
+Scientific publications using MESMER-OpemSCM Runner should cite the following publications alongside the appropriate global-mean temperature emulator publications:
+
+  Beusch, L., Nicholls, Z., Gudmundsson, L., Hauser, M., Meinshausen M., and Seneviratne,
+  S. I.: From emission scenarios to spatially resolved projections with a chain of
+  computationally efficient emulators: MAGICC (v 7.5.1) - MESMER (v 0.8.1) coupling,
+  Geosci. Model Dev. Discuss. [preprint], https://doi.org/10.5194/gmd-2021-252, in review,
+  2021.
+
+  Beusch, L., Gudmundsson, L., and Seneviratne, S. I.: Emulating Earth system model
+  temperatures with MESMER: from global mean temperature trajectories to grid-point-level
+  realizations on land, Earth Syst. Dynam., 11, 139–159,
+  https://doi.org/10.5194/esd-11-139-2020, 2020.
+
+.. sec-end-citing
 
 .. sec-begin-license
 

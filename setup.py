@@ -40,7 +40,7 @@ CLASSIFIERS = [
 ]
 
 REQUIREMENTS = [
-    # "mesmer",  # once released
+    "mesmer-emulator",
     "openscm-runner>=0.6",
     "scmdata>=0.9,<0.10",  # whilst running notebooks with rcmip phase 2 output
     "xarray==0.17.0",  # whilst running notebooks with rcmip phase 2 output
@@ -59,8 +59,9 @@ REQUIREMENTS_NOTEBOOKS = [
 ]
 REQUIREMENTS_DOCS = [
     "nbsphinx",
+    "numpydoc",
     "sphinx",
-    "sphinx_rtd_theme",
+    "sphinx-book-theme",
     "sphinx-copybutton",
 ]
 REQUIREMENTS_DEPLOY = ["twine>=1.11.0", "setuptools>=38.6.0", "wheel>=0.31.0"]

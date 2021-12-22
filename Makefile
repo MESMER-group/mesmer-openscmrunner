@@ -5,8 +5,6 @@ SHELL=/bin/bash
 
 CONDA_ENV_YML=environment.yml
 
-FILES_TO_FORMAT_PYTHON=setup.py examples src tests
-
 N_JOBS ?= 1
 
 ifndef CONDA_PREFIX
@@ -40,22 +38,27 @@ format:  ## re-format files
 	make isort
 	make black
 
-# TODO: add docs/source/conf.py  back in here
+.PHONY: docs
 black: $(VENV_DIR)  ## apply black formatter to source and tests
 	@status=$$(git status --porcelain src tests docs scripts); \
 	if test ${FORCE} || test "x$${status}" = x; then \
-		$(VENV_DIR)/bin/black --exclude _version.py setup.py src tests; \
+		$(VENV_DIR)/bin/black --exclude _version.py src setup.py tests docs/source/conf.py; \
 	else \
 		echo Not trying any formatting. Working directory is dirty ... >&2; \
 	fi;
 
+.PHONY: isort
 isort: $(VENV_DIR)  ## format the code
 	@status=$$(git status --porcelain src tests); \
 	if test ${FORCE} || test "x$${status}" = x; then \
-		$(VENV_DIR)/bin/isort src tests setup.py; \
+		$(VENV_DIR)/bin/isort src setup.py tests; \
 	else \
 		echo Not trying any formatting. Working directory is dirty ... >&2; \
 	fi;
+
+.PHONY: docs
+docs: $(VENV_DIR)  ## build the docs
+	$(VENV_DIR)/bin/sphinx-build -M html docs/source docs/build
 
 .PHONY: test
 test: $(VENV_DIR)  ## run the testsuite
