@@ -49,6 +49,7 @@ jobs:
           flake8 src tests setup.py
           isort --check-only --quiet src tests setup.py
     - name: Build docs
+      shell: bash -l {0}
       run: |
           sphinx-build -M html docs/source docs/build -qW
 
@@ -81,18 +82,12 @@ jobs:
       shell: bash -l {0}
       run: conda info
     - name: Install test dependencies
+      shell: bash -l {0}
       run: |
         which python
         conda install mesmer pip wheel
         pip install .[tests,notebooks]
-    - name: Test with pytest
-      env:
-        MIN_COVERAGE: 90
+    - name: Run tests
+      shell: bash -l {0}
       run: |
-          pytest tests -r a --cov=mesmer-openscmrunner --cov-report=xml --cov-fail-under=${MIN_COVERAGE}
-          if ! coverage report --fail-under=${MIN_COVERAGE} --show-missing
-          then
-              echo
-              echo "Error: Test coverage has to be at least ${MIN_COVERAGE}"
-              exit 1
-          fi
+          pytest tests/test_source_file_headers.py
