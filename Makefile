@@ -76,6 +76,13 @@ test: $(VENV_DIR)  ## run the testsuite
 test_cov_xml: $(VENV_DIR)  ## run the testsuite with xml report for codecov
 	$(VENV_DIR)/bin/pytest -r a -v --cov=mesmer-openscmrunner --cov-report=xml
 
+test-install: $(VENV_DIR)  ## test whether installing locally in a fresh env works
+	$(eval TEMPVENV := $(shell mktemp -d))
+	python3 -m venv $(TEMPVENV)
+	$(TEMPVENV)/bin/pip install wheel pip --upgrade
+	$(TEMPVENV)/bin/pip install .
+	$(TEMPVENV)/bin/python scripts/test-install.py
+
 .PHONY: conda-environment
 conda-environment:  $(VENV_DIR) ## make virtual environment for development
 $(VENV_DIR): $(CONDA_ENV_YML) setup.py setup.cfg pyproject.toml
@@ -84,3 +91,4 @@ $(VENV_DIR): $(CONDA_ENV_YML) setup.py setup.cfg pyproject.toml
 	# Install the remainder of the dependencies using pip
 	$(VENV_DIR)/bin/pip install --upgrade pip wheel
 	$(VENV_DIR)/bin/pip install -e .[dev]
+	touch $(VENV_DIR)
