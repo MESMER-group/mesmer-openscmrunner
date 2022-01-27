@@ -16,6 +16,14 @@ endif
 VENV_DIR=$(CONDA_PREFIX)
 endif
 
+# use mamba if available
+MAMBA_EXE := $(shell command -v mamba 2> /dev/null)
+ifndef MAMBA_EXE
+MAMBA_OR_CONDA=$(CONDA_EXE)
+else
+MAMBA_OR_CONDA=$(MAMBA_EXE)
+endif
+
 PYTHON=$(VENV_DIR)/bin/python
 
 define PRINT_HELP_PYSCRIPT
@@ -65,12 +73,10 @@ test: $(VENV_DIR)  ## run the testsuite
 	$(VENV_DIR)/bin/pytest --cov -r a -v --cov-report term-missing
 
 .PHONY: conda-environment
-conda-environment:  $(VENV_DIR) mesmer-environment.yml  ## make virtual environment for development
+conda-environment:  $(VENV_DIR) ## make virtual environment for development
 $(VENV_DIR): $(CONDA_ENV_YML) setup.py
-	$(CONDA_EXE) config --add channels conda-forge
-	$(CONDA_EXE) install -y --file $(CONDA_ENV_YML)
-	# can remove once mesmer is conda installable
-	$(CONDA_EXE) install -y --file mesmer-environment.yml
+	$(MAMBA_OR_CONDA) config --add channels conda-forge
+	$(MAMBA_OR_CONDA) install -y --file $(CONDA_ENV_YML)
 	# Install the remainder of the dependencies using pip
 	$(VENV_DIR)/bin/pip install --upgrade pip wheel
 	$(VENV_DIR)/bin/pip install -e .[dev]
