@@ -1,6 +1,7 @@
 # MESMER-OpenSCM Runner, land-climate dynamics group, S.I. Seneviratne
-# Copyright (c) 2021 MESMER-OpenSCM Runner contributors, listed in AUTHORS, and ETH Zurich.
+# Copyright (c) 2021-2022 MESMER-OpenSCM Runner contributors, listed in AUTHORS, and ETH Zurich.
 # Licensed under the GNU General Public License v3.0 or later; see LICENSE or https://www.gnu.org/licenses/
+
 
 import joblib
 import mesmer.create_emulations
@@ -10,6 +11,7 @@ import xarray as xr
 def _draw_realisations_from_mesmer_file_and_openscm_output(
     mesmer_bundle_file,
     openscm_gsat,
+    seeds,
     openscm_hfds=None,
     n_realisations_per_scenario=5,
 ):
@@ -21,6 +23,12 @@ def _draw_realisations_from_mesmer_file_and_openscm_output(
 
     openscm_gsat : :obj:`scmdata.ScmRun`
         Global-mean surface air temperature change output to be used to drive MESMER's emulations
+
+    seeds : dict
+        - ["esm"] (dict):
+            ["scenario"] (dict):
+                ["gv"] (seed for global variability)
+                ["lv"] (seed for local variability)
 
     openscm_hfds : [None, :obj:`scmdata.ScmRun`]
         If supplied, global-mean ocean heat uptake output to be used to drive MESMER's emulations
@@ -103,9 +111,9 @@ def _draw_realisations_from_mesmer_file_and_openscm_output(
             preds_lt=preds_lt_scenario,
             params_lt=mesmer_bundle["params_lt"],
             params_lv=mesmer_bundle["params_lv"],
-            params_gv_T=mesmer_bundle["params_gv_T"],
+            params_gv_T=mesmer_bundle["params_gv"],
             n_realisations=n_realisations_per_scenario,
-            seeds=mesmer_bundle["seeds"],  # TODO make this user customisable
+            seeds=seeds,
             land_fractions=mesmer_bundle["land_fractions"],
             time={
                 "hist": scen_gsat.filter(year=hard_coded_hist_years)["year"].values,
