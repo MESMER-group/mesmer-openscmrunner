@@ -70,7 +70,11 @@ docs: $(VENV_DIR)  ## build the docs
 
 .PHONY: test
 test: $(VENV_DIR)  ## run the testsuite
-	$(VENV_DIR)/bin/pytest --cov -r a -v --cov-report term-missing
+	$(VENV_DIR)/bin/pytest -r a -v --cov=mesmer-openscmrunner  --cov-report term-missing
+
+.PHONY: test_cov_xml
+test_cov_xml: $(VENV_DIR)  ## run the testsuite with xml report for codecov
+	$(VENV_DIR)/bin/pytest -r a -v --cov=mesmer-openscmrunner --cov-report=xml
 
 .PHONY: conda-environment
 conda-environment:  $(VENV_DIR) ## make virtual environment for development
