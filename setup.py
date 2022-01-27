@@ -42,8 +42,8 @@ CLASSIFIERS = [
 REQUIREMENTS = [
     "mesmer-emulator",
     "openscm-runner>=0.6",
-    "scmdata>=0.9,<0.10",  # whilst running notebooks with rcmip phase 2 output
-    "xarray==0.17.0",  # whilst running notebooks with rcmip phase 2 output
+    "scmdata",
+    "xarray",
 ]
 REQUIREMENTS_TESTS = [
     "codecov",
