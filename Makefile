@@ -78,11 +78,9 @@ test_cov_xml: $(VENV_DIR)  ## run the testsuite with xml report for codecov
 
 .PHONY: conda-environment
 conda-environment:  $(VENV_DIR) ## make virtual environment for development
-$(VENV_DIR): $(CONDA_ENV_YML) setup.py
+$(VENV_DIR): $(CONDA_ENV_YML) setup.py setup.cfg pyproject.toml
 	$(MAMBA_OR_CONDA) config --add channels conda-forge
 	$(MAMBA_OR_CONDA) install -y --file $(CONDA_ENV_YML)
 	# Install the remainder of the dependencies using pip
 	$(VENV_DIR)/bin/pip install --upgrade pip wheel
 	$(VENV_DIR)/bin/pip install -e .[dev]
-	$(VENV_DIR)/bin/jupyter nbextension enable --py widgetsnbextension
-	touch $(VENV_DIR)

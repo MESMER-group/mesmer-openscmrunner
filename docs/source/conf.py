@@ -10,15 +10,9 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 import datetime
-import os
-import sys
-
-sys.path.append(os.path.dirname(os.path.dirname(__file__)))
-sys.path.append(os.path.join(os.path.dirname(__file__), "../../src/mesmer_openscmrunner"))
+from importlib.metadata import version
 
 # -- Import packages ---------------------------------------------------------
-
-from mesmer_openscmrunner._version import get_versions
 
 # -- Project information -----------------------------------------------------
 
@@ -28,10 +22,10 @@ copyright_year = datetime.date.today().year
 copyright = "(c) 2021-{} MESMER-OpenSCM Runner contributors, listed in AUTHORS, and ETH Zurich".format(copyright_year)
 author = authors
 
-# The short X.Y version
-version = get_versions()["version"].split("+")[0]
 # The full version, including alpha/beta/rc tags
-release = get_versions()["version"]
+release = version("mesmer_openscmrunner")
+# The short X.Y version
+version = ".".join(release.split(".")[:2])
 
 # -- General configuration ---------------------------------------------------
 
