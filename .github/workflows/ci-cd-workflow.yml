@@ -118,11 +118,11 @@ jobs:
     - name: Test installation
       run: |
         pip list
-        python scripts/test_install.py
+        python scripts/test-install.py
 
   create-dist:
 
-    needs: [build,linting-and-docs]
+    needs: [build,linting-and-docs,test-install]
 
     runs-on: ubuntu-latest
     strategy:

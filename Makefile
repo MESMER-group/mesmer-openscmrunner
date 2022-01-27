@@ -81,7 +81,7 @@ test-install: $(VENV_DIR)  ## test whether installing locally in a fresh env wor
 	python3 -m venv $(TEMPVENV)
 	$(TEMPVENV)/bin/pip install wheel pip --upgrade
 	$(TEMPVENV)/bin/pip install .
-	$(TEMPVENV)/bin/python scripts/test_install.py
+	$(TEMPVENV)/bin/python scripts/test-install.py
 
 .PHONY: conda-environment
 conda-environment:  $(VENV_DIR) ## make virtual environment for development
@@ -91,3 +91,4 @@ $(VENV_DIR): $(CONDA_ENV_YML) setup.py setup.cfg pyproject.toml
 	# Install the remainder of the dependencies using pip
 	$(VENV_DIR)/bin/pip install --upgrade pip wheel
 	$(VENV_DIR)/bin/pip install -e .[dev]
+	touch $(VENV_DIR)
