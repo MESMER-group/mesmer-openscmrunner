@@ -51,6 +51,7 @@ def test_create_realisations_from_pre_run_data(test_data_dir):
     result = _draw_realisations_from_mesmer_file_and_openscm_output(
         mesmer_bundle_file=mesmer_bundle_file,
         openscm_gsat=openscm_gsat,
+        seeds={"IPSL-CM6A-LR": {"all": {"gv": 0, "lv": 1000000}}},
         openscm_hfds=openscm_hfds,
         n_realisations_per_scenario=30,
     )
@@ -113,6 +114,7 @@ def test_create_realisations_from_pre_run_data_with_unrecognised_scenario_name(
     result = _draw_realisations_from_mesmer_file_and_openscm_output(
         mesmer_bundle_file=mesmer_bundle_file,
         openscm_gsat=openscm_gsat,
+        seeds={"IPSL-CM6A-LR": {"all": {"gv": 0, "lv": 1000000}}},
         openscm_hfds=openscm_hfds,
         n_realisations_per_scenario=30,
     )
