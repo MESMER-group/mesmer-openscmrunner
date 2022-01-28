@@ -5,9 +5,9 @@ MESMER-OpenSCM Runner
 
 .. sec-end-title
 
-+-------------------+----------------+--------------+------------+
-| Repository health |    |CI CD|     |  |Coverage|  |  |Zenodo|  |
-+-------------------+----------------+--------------+------------+
++-------------------+----------------+--------------+----------+------------+
+| Repository health |    |CI CD|     |  |Coverage|  |  |Docs|  |  |Zenodo|  |
++-------------------+----------------+--------------+----------+------------+
 
 +------+------------------+----------------+------------------+
 | Pypi |  |PyPI Install|  |     |PyPI|     |  |PyPI Version|  |
@@ -23,6 +23,8 @@ MESMER-OpenSCM Runner
     :target: https://github.com/MESMER-group/mesmer-openscmrunner/actions/workflows/ci-cd-workflow.yml
 .. |Coverage| image:: https://codecov.io/gh/MESMER-group/mesmer-openscmrunner/branch/master/graph/badge.svg
     :target: https://codecov.io/gh/MESMER-group/mesmer-openscmrunner
+.. |Docs| image:: https://readthedocs.org/projects/mesmer-openscm-runner/badge/?version=stable
+    :target: https://mesmer-openscm-runner.readthedocs.io/en/stable/?badge=stable
 .. |Zenodo| image:: https://zenodo.org/badge/DOI/10.5281/zenodo.5094379.svg
     :target: https://doi.org/10.5281/zenodo.5094379
 .. |PyPI Install| image:: https://github.com/MESMER-group/mesmer-openscmrunner/workflows/Test%20PyPI%20install/badge.svg
