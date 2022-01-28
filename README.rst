@@ -5,6 +5,27 @@ MESMER-OpenSCM Runner
 
 .. sec-end-title
 
++-------------------+----------------+--------------+
+| Repository health |    |CI CD|     |  |Coverage|  |
++-------------------+----------------+--------------+
+
++------+------------------+----------------+------------------+
+| Pypi |  |PyPI Install|  |     |PyPI|     |  |PyPI Version|  |
++------+------------------+----------------+------------------+
+
++-----------------+----------------+---------------+-----------+
+|   Other info    | |Contributors| | |Last Commit| | |License| |
++-----------------+----------------+---------------+-----------+
+
+.. sec-begin-links
+
+.. |CI CD| image:: https://github.com/MESMER-group/mesmer-openscmrunner/actions/workflows/ci-cd-workflow.yml/badge.svg
+    :target: https://github.com/MESMER-group/mesmer-openscmrunner/actions/workflows/ci-cd-workflow.yml
+.. |Coverage| image:: https://codecov.io/gh/MESMER-group/mesmer-openscmrunner/branch/master/graph/badge.svg
+    :target: https://codecov.io/gh/MESMER-group/mesmer-openscmrunner
+
+.. sec-end-links
+
 .. sec-begin-shortsummary
 
 Coupling between `MESMER <https://github.com/MESMER-group/mesmer>`_ and `OpenSCM-Runner <https://github.com/openscm/openscm-runner>`_.
