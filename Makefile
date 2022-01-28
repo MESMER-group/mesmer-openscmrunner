@@ -70,11 +70,11 @@ docs: $(VENV_DIR)  ## build the docs
 
 .PHONY: test
 test: $(VENV_DIR)  ## run the testsuite
-	$(VENV_DIR)/bin/pytest -r a -v --cov=mesmer-openscmrunner  --cov-report term-missing
+	$(VENV_DIR)/bin/pytest -r a -v --cov=mesmer_openscmrunner  --cov-report term-missing
 
 .PHONY: test_cov_xml
 test_cov_xml: $(VENV_DIR)  ## run the testsuite with xml report for codecov
-	$(VENV_DIR)/bin/pytest -r a -v --cov=mesmer-openscmrunner --cov-report=xml
+	$(VENV_DIR)/bin/pytest -r a -v --cov=mesmer_openscmrunner --cov-report xml
 
 test-install: $(VENV_DIR)  ## test whether installing locally in a fresh env works
 	$(eval TEMPVENV := $(shell mktemp -d))
