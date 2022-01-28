@@ -5,9 +5,9 @@ MESMER-OpenSCM Runner
 
 .. sec-end-title
 
-+-------------------+----------------+--------------+
-| Repository health |    |CI CD|     |  |Coverage|  |
-+-------------------+----------------+--------------+
++-------------------+----------------+--------------+------------+
+| Repository health |    |CI CD|     |  |Coverage|  |  |Zenodo|  |
++-------------------+----------------+--------------+------------+
 
 +------+------------------+----------------+------------------+
 | Pypi |  |PyPI Install|  |     |PyPI|     |  |PyPI Version|  |
@@ -23,6 +23,20 @@ MESMER-OpenSCM Runner
     :target: https://github.com/MESMER-group/mesmer-openscmrunner/actions/workflows/ci-cd-workflow.yml
 .. |Coverage| image:: https://codecov.io/gh/MESMER-group/mesmer-openscmrunner/branch/master/graph/badge.svg
     :target: https://codecov.io/gh/MESMER-group/mesmer-openscmrunner
+.. |Zenodo| image:: https://zenodo.org/badge/DOI/10.5281/zenodo.5094379.svg
+    :target: https://doi.org/10.5281/zenodo.5094379
+.. |PyPI Install| image:: https://github.com/MESMER-group/mesmer-openscmrunner/workflows/Test%20PyPI%20install/badge.svg
+    :target: https://github.com/MESMER-group/mesmer-openscmrunner/actions?query=workflow%3A%22Test+PyPI+install%22
+.. |PyPI| image:: https://img.shields.io/pypi/pyversions/mesmer-openscmrunner.svg
+    :target: https://pypi.org/project/mesmer-openscmrunner/
+.. |PyPI Version| image:: https://img.shields.io/pypi/v/mesmer-openscmrunner.svg
+    :target: https://pypi.org/project/mesmer-openscmrunner/
+.. |Contributors| image:: https://img.shields.io/github/contributors/MESMER-group/mesmer-openscmrunner.svg
+    :target: https://github.com/MESMER-group/mesmer-openscmrunner/graphs/contributors
+.. |Last Commit| image:: https://img.shields.io/github/last-commit/MESMER-group/mesmer-openscmrunner.svg
+    :target: https://github.com/MESMER-group/mesmer-openscmrunner/commits/master
+.. |License| image:: https://img.shields.io/github/license/MESMER-group/mesmer-openscmrunner.svg
+    :target: https://github.com/MESMER-group/mesmer-openscmrunner/blob/master/LICENSE
 
 .. sec-end-links
 
