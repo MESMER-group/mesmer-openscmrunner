@@ -41,7 +41,7 @@ def test_create_realisations_from_pre_run_data(test_data_dir):
     # convert OHC to hfds in a crude way
     openscm_ohc = scmdata.ScmRun(magicc_output_ohc).filter(scenario=scenarios_to_run)
     # TODO: check whether this should be earth surface area or ocean surface area to be compatible with what MESMER has done
-    earth_surface_area = 510.1 * 10 ** 6 * unit_registry("km^2")
+    earth_surface_area = 510.1 * 10**6 * unit_registry("km^2")
     openscm_hfds = (
         openscm_ohc.delta_per_delta_time(out_var="Heat Uptake|Ocean")
         .convert_unit("W")
@@ -104,7 +104,7 @@ def test_create_realisations_from_pre_run_data_with_unrecognised_scenario_name(
     # convert OHC to hfds in a crude way
     openscm_ohc = scmdata.ScmRun(magicc_output_ohc).filter(scenario=scenarios_to_run)
     # TODO: check whether this should be earth surface area or ocean surface area to be compatible with what MESMER has done
-    earth_surface_area = 510.1 * 10 ** 6 * unit_registry("km^2")
+    earth_surface_area = 510.1 * 10**6 * unit_registry("km^2")
     openscm_hfds = (
         openscm_ohc.delta_per_delta_time(out_var="Heat Uptake|Ocean")
         .convert_unit("W")
