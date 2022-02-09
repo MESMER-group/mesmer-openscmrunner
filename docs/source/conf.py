@@ -16,10 +16,12 @@ from importlib.metadata import version
 
 # -- Project information -----------------------------------------------------
 
-project = 'MESMER-OpenSCM Runner'
+project = "MESMER-OpenSCM Runner"
 authors = "Authors, see AUTHORS"
 copyright_year = datetime.date.today().year
-copyright = "(c) 2021-{} MESMER-OpenSCM Runner contributors, listed in AUTHORS, and ETH Zurich".format(copyright_year)
+copyright = "(c) 2021-{} MESMER-OpenSCM Runner contributors, listed in AUTHORS, and ETH Zurich".format(
+    copyright_year
+)
 author = authors
 
 # The full version, including alpha/beta/rc tags
@@ -63,7 +65,7 @@ numpydoc_class_members_toctree = True
 numpydoc_show_class_members = False
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
+templates_path = ["_templates"]
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.

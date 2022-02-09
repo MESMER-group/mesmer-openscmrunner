@@ -53,6 +53,10 @@ Coupling between `MESMER <https://github.com/MESMER-group/mesmer>`_ and `OpenSCM
 Installation
 ------------
 
+MESMER-OpemSCM Runner can be installed with pip: ``pip install mesmer-openscmrunner``.
+For Windows users, note that we are having trouble with installation because installing
+rasterio on Windows is non-trivial (see e.g. `here <https://rasterio.readthedocs.io/en/latest/installation.html>`_).
+
 .. sec-end-installation
 
 .. sec-begin-citing

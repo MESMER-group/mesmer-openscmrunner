@@ -99,8 +99,8 @@ def _draw_realisations_from_mesmer_file_and_openscm_output(
                 hist_vals = hist_tas
                 scen_vals = scen_tas
             elif predictor == "gttas2":
-                hist_vals = hist_tas ** 2
-                scen_vals = scen_tas ** 2
+                hist_vals = hist_tas**2
+                scen_vals = scen_tas**2
             elif predictor == "gthfds":
                 hist_vals = hist_hfds
                 scen_vals = scen_hfds
