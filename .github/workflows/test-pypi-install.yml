@@ -1,11 +1,5 @@
 name: Test PyPI install
 on:
-  push:
-    branches:
-      - main
-    tags:
-      - 'v*'
-  pull_request:
   schedule:
     # * is a special character in YAML so you have to quote this string
     - cron:  '0 0 * * 3'
