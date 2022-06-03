@@ -14,6 +14,7 @@ def _draw_realisations_from_mesmer_file_and_openscm_output(
     seeds,
     openscm_hfds=None,
     n_realisations_per_scenario=5,
+    predictors=("gttas", "gttas2", "hfds"),
 ):
     """
     Parameters
@@ -35,6 +36,9 @@ def _draw_realisations_from_mesmer_file_and_openscm_output(
 
     n_realisations_per_scenario : int
         Number of realisations to draw for each scenario in ``openscm_gsat`` (and ``openscm_hfds`` if supplied)
+        
+    predictors : Tuple[str]
+        Predictors to use
 
     Returns
     -------
@@ -61,16 +65,19 @@ def _draw_realisations_from_mesmer_file_and_openscm_output(
     mesmer_bundle = joblib.load(mesmer_bundle_file)
 
     gsat_scenarios = set(openscm_gsat.get_unique_meta("scenario"))
-    hfds_scenarios = set(openscm_hfds.get_unique_meta("scenario"))
-    if gsat_scenarios != hfds_scenarios:
-        raise ValueError(
-            "gsat_scenarios: {}, hfds_scenarios: {}".format(
-                gsat_scenarios, hfds_scenarios
+    if openscm_hfds is not None:
+        hfds_scenarios = set(openscm_hfds.get_unique_meta("scenario"))
+        
+        if gsat_scenarios != hfds_scenarios:
+            raise ValueError(
+                "gsat_scenarios: {}, hfds_scenarios: {}".format(
+                    gsat_scenarios, hfds_scenarios
+                )
             )
-        )
 
     openscm_gsat_for_mesmer = _prepare_openscm_gsat(openscm_gsat)
-    openscm_hfds_for_mesmer = _prepare_openscm_hfds(openscm_hfds)
+    if openscm_hfds is not None:
+        openscm_hfds_for_mesmer = _prepare_openscm_hfds(openscm_hfds)
 
     hard_coded_hist_years = range(1850, 2014 + 1)
     hard_coded_scen_years = range(2015, 3000 + 1)
@@ -83,18 +90,23 @@ def _draw_realisations_from_mesmer_file_and_openscm_output(
 
         hist_tas = _filter_and_assert_1d(scen_gsat.filter(year=hard_coded_hist_years))
         scen_tas = _filter_and_assert_1d(scen_gsat.filter(year=hard_coded_scen_years))
-
-        openscm_hfds_for_mesmer_scen = openscm_hfds_for_mesmer.filter(scenario=scenario)
-        hist_hfds = _filter_and_assert_1d(
-            openscm_hfds_for_mesmer_scen.filter(year=hard_coded_hist_years)
-        )
-        scen_hfds = _filter_and_assert_1d(
-            openscm_hfds_for_mesmer_scen.filter(year=hard_coded_scen_years)
-        )
+        
+        
+        if openscm_hfds is not None:
+            openscm_hfds_for_mesmer_scen = openscm_hfds_for_mesmer.filter(scenario=scenario)
+            hist_hfds = _filter_and_assert_1d(
+                openscm_hfds_for_mesmer_scen.filter(year=hard_coded_hist_years)
+            )
+            scen_hfds = _filter_and_assert_1d(
+                openscm_hfds_for_mesmer_scen.filter(year=hard_coded_scen_years)
+            )
 
         # TODO: remove hard-coding and actually map up with what MESMER expects
         preds_lt_scenario = {}
-        for predictor in mesmer_bundle["params_lt"]["preds"]:
+        for predictor in predictors:
+            if predictor not in mesmer_bundle["params_lt"]["preds"]:
+                raise KeyError(predictor)
+
             if predictor == "gttas":
                 hist_vals = hist_tas
                 scen_vals = scen_tas
@@ -106,6 +118,9 @@ def _draw_realisations_from_mesmer_file_and_openscm_output(
                 scen_vals = scen_hfds
 
             preds_lt_scenario[predictor] = {"hist": hist_vals, scenario: scen_vals}
+        
+        # hack: need to use calibration that's done correctly but for sake of illustration doing this...
+        mesmer_bundle["params_lt"]["preds"] = list(predictors)
 
         result_scenario = mesmer.create_emulations.make_realisations(
             preds_lt=preds_lt_scenario,

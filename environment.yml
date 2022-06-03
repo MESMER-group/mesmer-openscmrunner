@@ -3,3 +3,6 @@ mesmer
 openscm-runner>=0.6
 scmdata
 xarray
+notebook
+pymagicc
+netCDF4
